@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import logo from "../../images/Han-Wiki.png";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const StyledNavbar = styled.div`
   background-color: #0d004f;
@@ -91,35 +91,35 @@ export default function Navbar() {
 
           <ul className="d-flex ">
             <li>
-              <Link className="text-decoration-none" id="list" to="/">
+              <NavLink className="text-decoration-none" id="list" exact to="/" activeClassName="active">
                 Home
-              </Link>
+              </NavLink>
             </li>
             <li className="dropdown">
               <button className="dropbtn">Movie</button>
               <ul className="dropdown-menu">
                 <li>
-                  <Link className="dropdown-item" to="movie/korea">
+                  <NavLink className="dropdown-item" to="movie/korea" activeClassName="active">
                     Korea
-                  </Link>
+                  </NavLink>
                 </li>
                 <li>
-                  <Link className="dropdown-item" to="movie/jepang">
+                  <NavLink className="dropdown-item" to="movie/jepang" activeClassName="active">
                     Jepang
-                  </Link>
+                  </NavLink>
                 </li>
               </ul>
             </li>
             <li>
-              <Link className="text-decoration-none" id="list" to="create">
+              <NavLink className="text-decoration-none" id="list" to="create">
                 Create
-              </Link>
+              </NavLink>
             </li>
-            <li> <Link className="text-decoration-none" id="list" to="openai">OpenAI</Link></li>
+            <li> <NavLink className="text-decoration-none" id="list" to="openai" activeClassName="active">OpenAI</NavLink></li>
             <li>
-              <Link className="text-decoration-none" id="list" to="about">
+              <NavLink className="text-decoration-none" id="list" to="about" activeClassName="active">
                 About
-              </Link>
+              </NavLink>
             </li>
           </ul>
         </nav>

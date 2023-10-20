@@ -1,5 +1,6 @@
-
+import { useEffect, useState } from "react";
 import styled from "styled-components";
+import axios from "axios";
 
 const StyledHero = styled.div`
   background-color: #0d004f;
@@ -33,7 +34,7 @@ const StyledHero = styled.div`
     background-color: #470057;
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 992px) {
     #contain {
       flex-direction: row;
     }
@@ -54,26 +55,54 @@ const StyledHero = styled.div`
   }
 `;
 export default function Hero() {
+  const [movie, setMovie] = useState("");
+  // const API_KEY = process.env.REACT_APP_API_KEY;
+
+  const genre = movie && movie.genres.map((genre) => genre.name).join(",\n");
+  const trailer = movie && movie.videos.results[0].key;
+
+  useEffect(() => {
+    getDetailMovie();
+  }, []);
+
+  // Mendapatkan satu data dari trending movies
+  async function getTrendingMovies() {
+    const response = await axios(`https://api.themoviedb.org/3/trending/movie/day?api_key=6e7471e72afb5cdd6752dd237ce49324`);
+
+    return response.data.results[0];
+  }
+
+  // Fungsi untuk mendapatkan detail movie
+  async function getDetailMovie() {
+    // ambil id dari trending movie
+    const trending = await getTrendingMovies();
+    const id = trending.id;
+
+    // fetch detail movie by id
+    const URL = `https://api.themoviedb.org/3/movie/${id}?api_key=6e7471e72afb5cdd6752dd237ce49324&append_to_response=videos`;
+    const response = await axios(URL);
+    setMovie(response.data);
+  }
 
   return (
     <StyledHero>
       <>
         <div className="d-flex mx-5" id="contain">
           <div className="left">
-            <h1 className="mb-3">Interstellar</h1>
+            <h1 className="mb-3">{movie.title}</h1>
             <div className="d-flex" id="blue">
-              <p className="me-4">2014-06-11</p>
-              <p>Adventure, Drama, Science Fiction</p>
+              <p className="me-4">{movie.release_date}</p>
+              <p>{genre}</p>
             </div>
-            <p className="my-4">
-              lorem Nostrud laboris nostrud occaecat proident consequat occaecat ullamco mollit. Voluptate dolore tempor officia nostrud cillum nulla ullamco ullamco fugiat exercitation et non minim. Sunt anim excepteur aliqua deserunt
-              aliquip eu ea. Ad irure occaecat nulla laborum sit aute reprehenderit. Sit sunt anim amet sint ad do dolore laboris id non eu ea ut ut. Deserunt nisi aliquip nisi proident id eiusmod cupidatat ea ad irure qui ex cillum
-              nostrud.
-            </p>
-            <button className="rounded-3">Watch Trailer</button>
+            <p className="my-4">{movie.overview}</p>
+            <button className="rounded-3">
+              <a className="text-white text-decoration-none" href={`https://www.youtube.com/watch?v=${trailer}`} target="_blank" rel="noopener noreferrer">
+                Watch Trailer
+              </a>
+            </button>
           </div>
           <div className="right">
-            <img className="rounded-4" src="https://picsum.photos/300/400" alt="gambar1"></img>
+            <img className="rounded-4" src={`https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`} alt={movie.Title}></img>
           </div>
         </div>
       </>
