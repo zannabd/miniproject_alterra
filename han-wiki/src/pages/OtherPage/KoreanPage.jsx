@@ -12,7 +12,7 @@ export default function KoreanPage() {
     getPopularMoviesKorea();
   }, []);
   async function getPopularMoviesKorea() {
-    const response = await axios(`https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}&with_original_language=ko&primary_release_date.gte=2019-01-01`);
+    const response = await axios(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&with_original_language=ko&primary_release_date.gte=2020-12-01&adult=false`);
     setMovies(response.data.results);
   }
   return (
