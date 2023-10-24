@@ -5,12 +5,11 @@ import Popular from "../components/Popular";
 import axios from "axios";
 
 export default function Home() {
-  const [ movies, setMovies ] = useState([]);
-
-
-  const API_KEY = "6e7471e72afb5cdd6752dd237ce49324";
+  const [movies, setMovies] = useState([]);
+  const API_KEY = import.meta.env.VITE_API_KEY;
   useEffect(() => {
     getPopularMoviesUsa();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   async function getPopularMoviesUsa() {

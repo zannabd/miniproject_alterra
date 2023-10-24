@@ -56,18 +56,19 @@ const StyledHero = styled.div`
 `;
 export default function Hero() {
   const [movie, setMovie] = useState("");
-  // const API_KEY = process.env.REACT_APP_API_KEY;
+  const API_KEY = import.meta.env.VITE_API_KEY;
 
   const genre = movie && movie.genres.map((genre) => genre.name).join(",\n");
   const trailer = movie && movie.videos.results[0].key;
 
   useEffect(() => {
     getDetailMovie();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Mendapatkan satu data dari trending movies
   async function getTrendingMovies() {
-    const response = await axios(`https://api.themoviedb.org/3/trending/movie/day?api_key=6e7471e72afb5cdd6752dd237ce49324`);
+    const response = await axios(`https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}`);
 
     return response.data.results[0];
   }
@@ -79,7 +80,7 @@ export default function Hero() {
     const id = trending.id;
 
     // fetch detail movie by id
-    const URL = `https://api.themoviedb.org/3/movie/${id}?api_key=6e7471e72afb5cdd6752dd237ce49324&append_to_response=videos`;
+    const URL = `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&append_to_response=videos`;
     const response = await axios(URL);
     setMovie(response.data);
   }

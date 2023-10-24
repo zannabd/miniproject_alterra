@@ -25,7 +25,6 @@ const StyledNavbar = styled.div`
     margin-right: 1rem;
   }
 
-
   #list {
     color: #fff;
     transition: color 0.2s;
@@ -42,7 +41,6 @@ const StyledNavbar = styled.div`
   .dropdown {
     position: relative;
     display: inline-block;
-    
   }
 
   .dropdown-menu {
@@ -51,14 +49,12 @@ const StyledNavbar = styled.div`
     background-color: #f1f1f1;
     min-width: 100px;
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-    
   }
   .dropdown-menu .dropdown-item {
     color: #000;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
-    
   }
 
   .dropdown-menu .dropdown-item:hover {
@@ -91,7 +87,7 @@ export default function Navbar() {
 
           <ul className="d-flex ">
             <li>
-              <NavLink className="text-decoration-none" id="list" exact to="/" activeClassName="active">
+              <NavLink className="text-decoration-none" id="list" exact="true" to="/" activeclassname="active">
                 Home
               </NavLink>
             </li>
@@ -99,12 +95,12 @@ export default function Navbar() {
               <button className="dropbtn">Movie</button>
               <ul className="dropdown-menu">
                 <li>
-                  <NavLink className="dropdown-item" to="movie/korea" activeClassName="active">
+                  <NavLink className="dropdown-item" to="movie/korea" activeclassname="active">
                     Korea
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink className="dropdown-item" to="movie/jepang" activeClassName="active">
+                  <NavLink className="dropdown-item" to="movie/jepang" activeclassname="active">
                     Jepang
                   </NavLink>
                 </li>
@@ -115,9 +111,14 @@ export default function Navbar() {
                 Create
               </NavLink>
             </li>
-            <li> <NavLink className="text-decoration-none" id="list" to="openai" activeClassName="active">OpenAI</NavLink></li>
             <li>
-              <NavLink className="text-decoration-none" id="list" to="about" activeClassName="active">
+              {" "}
+              <NavLink className="text-decoration-none" id="list" to="openai" activeclassname="active">
+                OpenAI
+              </NavLink>
+            </li>
+            <li>
+              <NavLink className="text-decoration-none" id="list" to="about" activeclassname="active">
                 About
               </NavLink>
             </li>

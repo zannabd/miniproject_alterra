@@ -71,7 +71,7 @@ export default function Detail() {
   const [movie, setMovie] = useState("");
   const genres = movie && movie.genres.map((genre) => genre.name).join(",\n");
   const trailer = movie && `https://www.youtube.com/watch?v=${movie?.videos?.results[0].key}`;
-  const API_KEY = "6e7471e72afb5cdd6752dd237ce49324";
+  const API_KEY = import.meta.env.VITE_API_KEY;
 
   async function fetchDetailMovie() {
     try {
