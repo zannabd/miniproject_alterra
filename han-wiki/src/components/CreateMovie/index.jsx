@@ -5,6 +5,7 @@ const StyledAddMovie = styled.div`
   padding: 2rem;
   font-family: "Poppins";
   color: #fff;
+  margin-top: 0;
 
   .movieForm {
     display: flex;
@@ -80,43 +81,41 @@ const StyledAddMovie = styled.div`
 export default function AddMovieForm() {
   return (
     <StyledAddMovie>
-      <>
-        <div className="movieForm">
-          <div className="left">
-            <img className="rounded-4" src="https://picsum.photos/id/1/500/400" alt="addMovie" />
-          </div>
-          <div className="right">
-            <h1 className="my-3 mb-5 text-center fw-bold">Add Movie Form</h1>
-            <form>
-              <label>
-                <span>Title :</span>
-                <br />
-                <input type="text" id="inputTitle" />
-              </label>
-
-              <label>
-                <span>Poster Link :</span>
-                <br />
-                <input type="text" id="inputPoster" />
-              </label>
-
-              <div className="dateGenre">
-                <label className="labelDate">
-                  <span>Release Date :</span>
-                  <br />
-                  <input type="date" id="inputDate" />
-                </label>
-                <label className="labelGenre">
-                  <span>Genre :</span>
-                  <br />
-                  <input type="text" id="inputGenre" />
-                </label>
-              </div>
-              <button type="submit">Submit</button>
-            </form>
-          </div>
+      <div className="movieForm">
+        <div className="left">
+          <img className="rounded-4" src="https://picsum.photos/id/1/500/400" alt="addMovie" />
         </div>
-      </>
+        <div className="right">
+          <h1 className="my-3 mb-5 text-center fw-bold">Add Movie Form</h1>
+          <form>
+            <label>
+              <span>Title :</span>
+              <br />
+              <input type="text" id="inputTitle" />
+            </label>
+
+            <label>
+              <span>Poster Link :</span>
+              <br />
+              <input type="text" id="inputPoster" />
+            </label>
+
+            <div className="dateGenre">
+              <label className="labelDate">
+                <span>Release Date :</span>
+                <br />
+                <input type="date" id="inputDate" />
+              </label>
+              <label className="labelGenre">
+                <span>Genre :</span>
+                <br />
+                <input type="text" id="inputGenre" />
+              </label>
+            </div>
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+      </div>
     </StyledAddMovie>
   );
 }
