@@ -1,6 +1,9 @@
+/* eslint-disable react/prop-types */
 import styled from "styled-components";
 import Movie from "../Movie";
 import PropTypes from "prop-types";
+// import axios from "axios";
+// import { useEffect, useState } from "react";
 
 const StyledPopular = styled.div`
   background-color: #370058;
@@ -16,18 +19,31 @@ const StyledPopular = styled.div`
     display: flex;
     flex-direction: column;
     margin-bottom: 1rem;
+    flex-wrap: wrap;
   }
 
   @media screen and (min-width: 768px) {
     .movie {
       flex-direction: row;
-      flex-wrap: wrap;
       justify-content: space-evenly;
     }
   }
 `;
 
-export default function Popular({ country }) {
+export default function Popular({ country, movies }) {
+  
+
+  // const API_KEY = "6e7471e72afb5cdd6752dd237ce49324";
+  // useEffect(() => {
+  //   getPopularMoviesUsa();
+  // }, []);
+
+  // async function getPopularMoviesUsa() {
+  //   // fetch dengan axios
+  //   const response = await axios(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`);
+
+  //   setMovies(response.data.results);
+  // }
   return (
     <StyledPopular>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
@@ -44,15 +60,9 @@ export default function Popular({ country }) {
           </p>
         </div>
         <div className="movie">
-          <Movie />
-          <Movie />
-          <Movie />
-          <Movie />
-          <Movie />
-          <Movie />
-          <Movie />
-          <Movie />
-          <Movie />
+          {movies.map(function (movie) {
+            return <Movie key={movie.id} movie={movie} />;
+          })}
         </div>
       </>
     </StyledPopular>
