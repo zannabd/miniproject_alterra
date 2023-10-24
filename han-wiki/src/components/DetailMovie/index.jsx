@@ -1,3 +1,6 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
 const StyledDetail = styled.div`
@@ -19,6 +22,9 @@ const StyledDetail = styled.div`
     flex-direction: column;
     margin-bottom: 2rem;
   }
+  h2 {
+    color: #808080;
+  }
   #blue {
     color: #118ab2;
   }
@@ -34,8 +40,12 @@ const StyledDetail = styled.div`
   button:hover {
     background-color: #470057;
   }
+  a {
+    text-decoration: none;
+    color: #fff;
+  }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 992px) {
     #contain {
       flex-direction: row;
     }
@@ -43,7 +53,6 @@ const StyledDetail = styled.div`
       flex-basis: 40%;
       text-align: left;
       align-self: center;
-      
     }
 
     .right {
@@ -56,26 +65,48 @@ const StyledDetail = styled.div`
   }
 `;
 
+// eslint-disable-next-line react/prop-types
 export default function Detail() {
+  const { id } = useParams();
+  const [movie, setMovie] = useState("");
+  const genres = movie && movie.genres.map((genre) => genre.name).join(",\n");
+  const trailer = movie && `https://www.youtube.com/watch?v=${movie?.videos?.results[0].key}`;
+  const API_KEY = "6e7471e72afb5cdd6752dd237ce49324";
+
+  async function fetchDetailMovie() {
+    try {
+      const response = await axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&append_to_response=videos`);
+      setMovie(response.data);
+    } catch (error) {
+      console.error("Error fetching movie data: ", error);
+    }
+  }
+
+  useEffect(() => {
+    fetchDetailMovie();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id]);
+
   return (
     <StyledDetail>
       <>
         <div className="d-flex mx-5" id="contain">
           <div className="left">
-            <img className="rounded-4" src="https://picsum.photos/300/400" alt="gambar1"></img>
+            <img className="rounded-4" src={`https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`} alt={movie.title}></img>
           </div>
           <div className="right">
-            <h1 className="mb-3">Movie Title</h1>
+            <h1 className="mb-3">{movie.title}</h1>
+            {movie.original_title !== movie.title && <h2>{movie.original_title}</h2>}
             <div className="d-flex" id="blue">
-              <p className="me-4">Release date</p>
-              <p>Genre</p>
+              <p className="me-4">{movie.release_date}</p>
+              <p>{genres}</p>
             </div>
-            <p className="my-4">
-              lorem Nostrud laboris nostrud occaecat proident consequat occaecat ullamco mollit. Voluptate dolore tempor officia nostrud cillum nulla ullamco ullamco fugiat exercitation et non minim. Sunt anim excepteur aliqua deserunt
-              aliquip eu ea. Ad irure occaecat nulla laborum sit aute reprehenderit. Sit sunt anim amet sint ad do dolore laboris id non eu ea ut ut. Deserunt nisi aliquip nisi proident id eiusmod cupidatat ea ad irure qui ex cillum
-              nostrud.
-            </p>
-            <button className="rounded-3">Watch Trailer</button>
+            <p className="my-4">{movie.overview}</p>
+            <button className="rounded-3">
+              <a href={trailer} target="_blank" rel="noopener noreferrer">
+                Watch Trailer
+              </a>
+            </button>
           </div>
         </div>
       </>
