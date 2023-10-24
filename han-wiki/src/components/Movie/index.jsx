@@ -10,12 +10,13 @@ const StyledMovie = styled.div`
   }
   p {
     font-family: "Open Sans";
+    color: #118ab2;
   }
   .link {
     text-decoration: none;
   }
-  .link #movie #title:hover {
-    background-color: grey;
+  #link #movie #title:hover {
+    color: grey;
   }
   img {
     transition: transform 0.3s ease;
@@ -41,13 +42,13 @@ export default function Movie(props) {
     <StyledMovie>
       <>
         <div>
-          <Link to="/detail/${id}" className="link">
+          <Link to={`/detail/${movie.id}`} className="link">
             <img className="rounded-4" src={movie.poster || `https://image.tmdb.org/t/p/w300/${movie.poster_path}`} alt="movie" />
             <div className="my-4 mb-5" id="movie">
               <h3 className="fs-3xl text-white" id="title">
                 {movie.title}
               </h3>
-              <p className="text-white" id="date">
+              <p id="date">
                 {movie.year || movie.release_date}
               </p>
             </div>
