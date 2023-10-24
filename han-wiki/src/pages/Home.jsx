@@ -6,7 +6,7 @@ import axios from "axios";
 
 export default function Home() {
   const [ movies, setMovies ] = useState([]);
-  console.log(movies);
+
 
   const API_KEY = "6e7471e72afb5cdd6752dd237ce49324";
   useEffect(() => {
