@@ -1,6 +1,9 @@
-// import { useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable react/prop-types */
 import styled from "styled-components";
-import data from "../constants/data";
+// import { useSelector } from "react-redux";
+import { useEffect} from "react";
+import axios from "axios";
 
 const StyledListMovie = styled.div`
   background-color: #370058;
@@ -34,21 +37,43 @@ const StyledListMovie = styled.div`
     font-family: "Open Sans";
   }
 
-  .movie {
+  #movie {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+    text-align: center;
   }
+  button {
+    margin-bottom: 2rem;
+  }
+  @media screen and (min-width: 768px) {
+    flex-basis: 50%;
+  }
+
   @media screen and (min-width: 992px) {
-    .movie {
+    #movie {
       flex-direction: row;
       justify-content: space-evenly;
+      flex-basis: 25%;
     }
   }
 `;
 
-export default function ListMovie() {
-  const movies = data;
+export default function ListMovie(props) {
+  // const movies = useSelector((state) => state.movie.movies);
+  const { movies, setMovies } = props;
+
+  useEffect(() => {
+    const getMovies = async () => {
+      try {
+        const response = await axios.get("https://6524e7f8ea560a22a4ea3f65.mockapi.io/movies");
+        setMovies(response.data);
+      } catch (error) {
+        console.log("Error", error);
+      }
+    };
+    getMovies();
+  }, []);
 
   return (
     <StyledListMovie>
@@ -64,15 +89,16 @@ export default function ListMovie() {
           <h1>List Movie</h1>
           <p>Create Movie Result</p>
         </div>
-        <div className="movie">
+        <div className="mb-3" id="movie">
           {movies.map((movie, index) => (
             <div key={index}>
               <img className="rounded-4" src={movie.poster} alt={movie.title} />
               <h3 className="my-2 mt-3 text-center">{movie.title}</h3>
-              <div className="d-flex justify-content-center">
+              <div className="d-flex justify-content-center" id="cardMovie">
                 <p className="mx-2">{movie.release_date}</p>
                 <p className="genre">{movie.genre}</p>
               </div>
+              <button className="btn btn-danger">Delete</button>
             </div>
           ))}
         </div>

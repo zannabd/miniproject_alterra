@@ -18,7 +18,7 @@ function App() {
           <Route path="/" element={<Home movies={movies} setMovies={setMovies}/>} />
           <Route path="/movie/korea" element={<KoreanPage />} />
           <Route path="/movie/jepang" element={<JepangPage/>} />
-          <Route path="/create" element={<CreatePage />} />
+          <Route path="/create" element={<CreatePage movies={movies} setMovies={setMovies}/>} />
           <Route path="/openai" element={<OpenAI />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/detail/:id" element={<DetailPage/>}/>
