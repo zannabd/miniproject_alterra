@@ -10,18 +10,19 @@ import { useState } from "react";
 import DetailPage from "./pages/OtherPage/DetailPage";
 
 function App() {
-  const [movies, setMovies] = useState([])
+  const [movies, setMovies] = useState([]);
+
   return (
     <>
       <Layout>
         <Routes>
-          <Route path="/" element={<Home movies={movies} setMovies={setMovies}/>} />
+          <Route path="/" element={<Home movies={movies} setMovies={setMovies} />} />
           <Route path="/movie/korea" element={<KoreanPage />} />
-          <Route path="/movie/jepang" element={<JepangPage/>} />
-          <Route path="/create" element={<CreatePage movies={movies} setMovies={setMovies}/>} />
+          <Route path="/movie/jepang" element={<JepangPage />} />
+          <Route path="/create" element={<CreatePage movies={movies} setMovies={setMovies} />} />
           <Route path="/openai" element={<OpenAI />} />
           <Route path="/about" element={<AboutPage />} />
-          <Route path="/detail/:id" element={<DetailPage/>}/>
+          <Route path="/detail/:id" element={<DetailPage />} />
         </Routes>
       </Layout>
     </>

@@ -21,7 +21,7 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <Popular country="Popular Movie" movies={movies} />
+      <Popular country="Popular Movie" movies={movies}/>
     </>
   );
 }
