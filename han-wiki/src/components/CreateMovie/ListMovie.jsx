@@ -2,7 +2,7 @@
 /* eslint-disable react/prop-types */
 import styled from "styled-components";
 // import { useSelector } from "react-redux";
-import { useEffect} from "react";
+import { useEffect } from "react";
 import axios from "axios";
 
 const StyledListMovie = styled.div`
@@ -60,13 +60,12 @@ const StyledListMovie = styled.div`
 `;
 
 export default function ListMovie(props) {
-  // const movies = useSelector((state) => state.movie.movies);
   const { movies, setMovies } = props;
-
   useEffect(() => {
     const getMovies = async () => {
       try {
         const response = await axios.get("https://6524e7f8ea560a22a4ea3f65.mockapi.io/movies");
+
         setMovies(response.data);
       } catch (error) {
         console.log("Error", error);
@@ -74,6 +73,20 @@ export default function ListMovie(props) {
     };
     getMovies();
   }, []);
+
+  const handleDeleteMovie = async (id) => {
+    const confirmDelete = window.confirm("Kamu yakin akan menghapus ini?");
+    if (confirmDelete) {
+      try {
+        await axios.delete(`https://6524e7f8ea560a22a4ea3f65.mockapi.io/movies/${id}`);
+        const updated = movies.filter((movies) => movies.id !== id);
+        setMovies(updated);
+        console.log(`Movies dengan ID ${movies.id} telah dihapus`);
+      } catch (error) {
+        console.error("menghapus movie error", error);
+      }
+    }
+  };
 
   return (
     <StyledListMovie>
@@ -98,7 +111,12 @@ export default function ListMovie(props) {
                 <p className="mx-2">{movie.release_date}</p>
                 <p className="genre">{movie.genre}</p>
               </div>
-              <button className="btn btn-danger">Delete</button>
+              <div className="d-flex justify-content-around text-center">
+                <button className="btn btn-danger" onClick={() => handleDeleteMovie(movie.id)}>
+                  Delete
+                </button>
+                <button className="btn btn-warning">Edit</button>
+              </div>
             </div>
           ))}
         </div>

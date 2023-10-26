@@ -2,6 +2,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
+import { v4 as uuidv4 } from "uuid";
 
 const StyledAddMovie = styled.div`
   background-color: #0d004f;
@@ -82,7 +83,6 @@ const StyledAddMovie = styled.div`
 `;
 
 export default function AddMovieForm({ onAddMovie }) {
-  
   const [movieData, setMovieData] = useState({
     title: "",
     poster: "",
@@ -91,9 +91,10 @@ export default function AddMovieForm({ onAddMovie }) {
   });
   const [formError, setFormError] = useState({
     title: false,
+    poster: false,
     release_date: false,
     genre: false,
-    poster: false,
+    
   });
 
   const handleChange = (e) => {
@@ -119,10 +120,11 @@ export default function AddMovieForm({ onAddMovie }) {
     }
     try {
       const response = await axios.post("https://6524e7f8ea560a22a4ea3f65.mockapi.io/movies", {
+        id: uuidv4(),
         title: title,
-        genre: genre,
-        release_date: release_date,
         poster: poster,
+        release_date: release_date,
+        genre: genre,
       });
 
       onAddMovie(response.data);
@@ -136,9 +138,9 @@ export default function AddMovieForm({ onAddMovie }) {
 
       setFormError({
         title: false,
-        genre: false,
-        release_date: false,
         poster: false,
+        release_date: false,
+        genre: false,
       });
     } catch (error) {
       console.log("Gagal Menambah Movie", error);
@@ -164,22 +166,22 @@ export default function AddMovieForm({ onAddMovie }) {
             <label>
               <span>Poster Link :</span>
               <br />
-              <input type="text" id="inputPoster" name="poster" onChange={handleChange} />
-              {/* {formError.poster && <div className="error">{formError.poster}</div>} */}
+              <input type="text" id="inputPoster" name="poster" value={movieData.poster} onChange={handleChange} />
+              {formError.poster && <div className="error">{formError.poster}</div>}
             </label>
 
             <div className="dateGenre">
               <label className="labelDate">
                 <span>Release Date :</span>
                 <br />
-                <input type="date" id="inputDate" name="release_date" onChange={handleChange} />
-                {/* {formError.release_date && <div className="error">{formError.release_date}</div>} */}
+                <input type="date" id="inputDate" name="release_date" value={movieData.release_date} onChange={handleChange} />
+                {formError.release_date && <div className="error">{formError.release_date}</div>}
               </label>
               <label className="labelGenre">
                 <span>Genre :</span>
                 <br />
-                <input type="text" id="inputGenre" name="genre" onChange={handleChange} />
-                {/* {formError.genre && <div className="error">{formError.genre}</div>} */}
+                <input type="text" id="inputGenre" name="genre" value={movieData.genre} onChange={handleChange} />
+                {formError.genre && <div className="error">{formError.genre}</div>}
               </label>
             </div>
             <button type="submit">Submit</button>
