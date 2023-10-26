@@ -99,7 +99,7 @@ export default function OpenAi() {
     <StyledOpenAI>
       <h1 className="my-5 text-center">OpenAI</h1>
       <div className="title">
-        <h2>Memberikan jawaban dan list movie dan drama yang kamu cari</h2>
+        <h2>Memberikan jawaban untuk list movie dan drama yang kamu cari</h2>
       </div>
       <div className="search">
         <textarea className="typing" type="text" value={prompt} onChange={(e) => setPrompt(e.target.value)} placeholder="Ketik disini..." />
