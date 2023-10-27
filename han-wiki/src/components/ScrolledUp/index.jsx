@@ -10,8 +10,8 @@ const StyledArrow = styled.div`
     right: 20px;
     background: #007bff;
     color: #fff;
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     display: flex;
     align-items: center;
