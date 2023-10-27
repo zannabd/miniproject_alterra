@@ -8,11 +8,17 @@ const StyledDetail = styled.div`
   background-color: #0d004f;
   color: #fff;
   font-family: "Poppins";
-  padding: 2rem;
+  padding-bottom: 2rem;
   padding-top: 6rem;
+  #contain {
+    display: flex;
+    flex-direction: column;
+  }
 
   .left img {
+    margin-left: 1.5rem;
     text-align: center;
+    width: 300px;
   }
 
   .right {
@@ -50,10 +56,11 @@ const StyledDetail = styled.div`
     #contain {
       flex-direction: row;
     }
-    .left {
+    .left img {
       flex-basis: 40%;
       text-align: left;
       align-self: center;
+      width: 500px;
     }
 
     .right {
