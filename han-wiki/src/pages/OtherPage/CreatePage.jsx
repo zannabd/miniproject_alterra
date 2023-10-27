@@ -13,6 +13,7 @@ export default function CreatePage(props) {
     <>
       <AddMovieForm onAddMovie={addMovieToList} />
       <ListMovie movies={movies} setMovies={setMovies} />
+      
     </>
   );
 }

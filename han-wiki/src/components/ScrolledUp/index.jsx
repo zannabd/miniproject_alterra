@@ -6,12 +6,12 @@ const StyledArrow = styled.div`
   /* ScrollToTopButton.css */
   .scroll-to-top {
     position: fixed;
-    bottom: 30px;
-    right: 30px;
+    bottom: 20px;
+    right: 20px;
     background: #007bff;
     color: #fff;
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -21,7 +21,7 @@ const StyledArrow = styled.div`
 
   .scroll-to-top .arrow {
     border: solid #fff;
-    border-width: 0 5px 5px 0;
+    border-width: 0 4px 4px 0;
     display: inline-block;
     padding: 5px;
     transform: rotate(-135deg);

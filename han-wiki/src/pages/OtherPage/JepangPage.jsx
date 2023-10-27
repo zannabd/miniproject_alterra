@@ -19,6 +19,7 @@ export default function JepangPage() {
     <>
       <Hero />
       <Popular country="Popular Movie Japanese" movies={movies} />
+      
     </>
   );
 }
