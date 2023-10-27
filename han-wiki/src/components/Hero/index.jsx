@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
+import ENDPOINTS from "../../constant/endpoints";
 
 const StyledHero = styled.div`
   background-color: #0d004f;
@@ -56,7 +57,6 @@ const StyledHero = styled.div`
 `;
 export default function Hero() {
   const [movie, setMovie] = useState("");
-  const API_KEY = import.meta.env.VITE_API_KEY;
 
   const genre = movie && movie.genres.map((genre) => genre.name).join(",\n");
   const trailer = movie && movie.videos.results[0].key;
@@ -68,7 +68,7 @@ export default function Hero() {
 
   // Mendapatkan satu data dari trending movies
   async function getTrendingMovies() {
-    const response = await axios(`https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}`);
+    const response = await axios(ENDPOINTS.GET_TRENDING);
 
     return response.data.results[0];
   }
@@ -80,7 +80,7 @@ export default function Hero() {
     const id = trending.id;
 
     // fetch detail movie by id
-    const URL = `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&append_to_response=videos`;
+    const URL = ENDPOINTS.GET_DETAIL(id);
     const response = await axios(URL);
     setMovie(response.data);
   }

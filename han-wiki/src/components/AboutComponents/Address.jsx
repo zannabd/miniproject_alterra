@@ -1,31 +1,34 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLinkedin } from "@fortawesome/free-brands-svg-icons";
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import { faInstagram } from "@fortawesome/free-brands-svg-icons";
 import { Container } from "react-bootstrap";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const StyledAddress = styled.div`
   padding: 2rem;
   font-family: "Jost", sans-serif;
 
   h2 {
-    color: #64007B;
+    color: #64007b;
     font-weight: 600;
     font-size: 28px;
   }
 
   h3 {
-    color: #64007B;
+    color: #64007b;
     font-weight: 700;
     font-size: 16px;
   }
   li {
     list-style-type: none;
     font-size: 14px;
-    font-weight: 50
+    font-weight: 50;
   }
   #circle {
     height: 36px;
     width: 36px;
-    background-color: #64007B;
-    border-radius: 50%;
   }
 
   #shape {
@@ -73,11 +76,15 @@ export default function Address() {
             <h3>Our Social Networks</h3>
             <p>Contact us via linkedin, instagram, and github</p>
             <div id="shape">
-              <div id="circle"></div>
-              <div id="circle"></div>
-              <div id="circle"></div>
-              <div id="circle"></div>
-              <div id="circle"></div>
+              <Link to="https://www.linkedin.com/in/fauzan-abdillah-aa04b2213/" target="_blank">
+                <FontAwesomeIcon icon={faLinkedin} style={{ color: "#0054db" }} id="circle" />
+              </Link>
+              <Link to="https://github.com/zannabd" target="_blank">
+                <FontAwesomeIcon icon={faGithub} style={{ color: "#000000" }} id="circle" />
+              </Link>
+              <Link to="https://www.instagram.com/fawuzan_abd/" target="_blank">
+                <FontAwesomeIcon icon={faInstagram} style={{ color: "#000000" }} id="circle" />
+              </Link>
             </div>
           </div>
         </div>

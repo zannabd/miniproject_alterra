@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import ENDPOINTS from "../../constant/endpoints";
 
 const StyledDetail = styled.div`
   background-color: #0d004f;
@@ -71,11 +72,10 @@ export default function Detail() {
   const [movie, setMovie] = useState("");
   const genres = movie && movie.genres.map((genre) => genre.name).join(",\n");
   const trailer = movie && `https://www.youtube.com/watch?v=${movie?.videos?.results[0].key}`;
-  const API_KEY = import.meta.env.VITE_API_KEY;
 
   async function fetchDetailMovie() {
     try {
-      const response = await axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&append_to_response=videos`);
+      const response = await axios.get(ENDPOINTS.GET_DETAIL(id));
       setMovie(response.data);
     } catch (error) {
       console.error("Error fetching movie data: ", error);

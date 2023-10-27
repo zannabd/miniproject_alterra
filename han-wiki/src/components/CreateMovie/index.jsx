@@ -4,6 +4,7 @@ import styled from "styled-components";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 import { useNavigate, useParams } from "react-router-dom";
+import ENDPOINTS from "../../constant/endpoints";
 
 const StyledAddMovie = styled.div`
   background-color: #0d004f;
@@ -86,6 +87,7 @@ const StyledAddMovie = styled.div`
 export default function AddMovieForm({ onAddMovie }) {
   const { id } = useParams();
   const navigate = useNavigate();
+
   const [movieData, setMovieData] = useState({
     title: "",
     poster: "",
@@ -122,7 +124,7 @@ export default function AddMovieForm({ onAddMovie }) {
     }
     try {
       if (id) {
-        await axios.put(`https://6524e7f8ea560a22a4ea3f65.mockapi.io/movies/${id}`, {
+        await axios.put(ENDPOINTS.MOVIES(id), {
           title: title,
           poster: poster,
           release_date: release_date,
@@ -130,7 +132,7 @@ export default function AddMovieForm({ onAddMovie }) {
         });
         navigate("/create");
       } else {
-        const response = await axios.post("https://6524e7f8ea560a22a4ea3f65.mockapi.io/movies", {
+        const response = await axios.post(ENDPOINTS.ADD_MOVIE, {
           id: uuidv4,
           title: title,
           poster: poster,
@@ -163,7 +165,7 @@ export default function AddMovieForm({ onAddMovie }) {
     if (id) {
       const fetchMovieData = async () => {
         try {
-          const response = await axios.get(`https://6524e7f8ea560a22a4ea3f65.mockapi.io/movies/${id}`);
+          const response = await axios.get(ENDPOINTS.MOVIES(id));
           const { title, poster, release_date, genre } = response.data;
           setMovieData({ title, poster, release_date, genre });
         } catch (error) {

@@ -5,10 +5,6 @@ import ListMovie from "../../components/CreateMovie/ListMovie";
 
 export default function CreatePage(props) {
   const { movies, setMovies } = props;
-  // const [editMode, setEditMode] = useState(false);
-  // const onEdit = () => {
-  //   setEditMode(true);
-  // };
 
   const addMovieToList = (newMovie) => {
     setMovies([...movies, newMovie]);

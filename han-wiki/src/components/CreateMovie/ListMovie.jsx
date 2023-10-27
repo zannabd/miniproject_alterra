@@ -1,10 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
 import styled from "styled-components";
-// import { useSelector } from "react-redux";
+
 import { useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import ENDPOINTS from "../../constant/endpoints";
 
 const StyledListMovie = styled.div`
   background-color: #370058;
@@ -82,7 +83,7 @@ export default function ListMovie(props) {
     const confirmDelete = window.confirm("Kamu yakin akan menghapus ini?");
     if (confirmDelete) {
       try {
-        await axios.delete(`https://6524e7f8ea560a22a4ea3f65.mockapi.io/movies/${id}`);
+        await axios.delete(ENDPOINTS.MOVIES(id));
         const updated = movies.filter((movies) => movies.id !== id);
         setMovies(updated);
         console.log(`Movies dengan ID ${movies.id} telah dihapus`);
@@ -110,12 +111,12 @@ export default function ListMovie(props) {
           {movies.map((movie, index) => (
             <div key={index}>
               {/* <Link to={`/detail/${movie.id}`} className="link"> */}
-                <img className="rounded-4" src={movie.poster} alt={movie.title} />
-                <h3 className="my-2 mt-3 text-center">{movie.title}</h3>
-                <div className="d-flex justify-content-center" id="cardMovie">
-                  <p className="mx-2">{movie.release_date}</p>
-                  <p className="genre">{movie.genre}</p>
-                </div>
+              <img className="rounded-4" src={movie.poster} alt={movie.title} />
+              <h3 className="my-2 mt-3 text-center">{movie.title}</h3>
+              <div className="d-flex justify-content-center" id="cardMovie">
+                <p className="mx-2">{movie.release_date}</p>
+                <p className="genre">{movie.genre}</p>
+              </div>
               {/* </Link> */}
               <div className="d-flex justify-content-around text-center">
                 <button className="btn btn-danger" onClick={() => handleDeleteMovie(movie.id)}>

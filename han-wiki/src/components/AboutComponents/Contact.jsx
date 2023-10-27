@@ -62,6 +62,14 @@ export default function Contact() {
   function handleSubmit(e) {
     e.preventDefault();
     alert(`Input yang Anda Kirim : \n First Name    : ${formData.firstName} \n Last Name    :   ${formData.lastName} \n Email            :   ${formData.email}  \n Message       :  ${formData.message}`);
+
+    // Membersihkan data di form setelah proses pengiriman berhasil
+    setFormData({
+      firstName: "",
+      lastName: "",
+      email: "",
+      message: "",
+    });
   }
   return (
     <StyledContact>

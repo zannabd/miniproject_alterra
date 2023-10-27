@@ -5,6 +5,7 @@ import styled from "styled-components";
 
 import axios from "axios";
 import { useState } from "react";
+import ENDPOINTS from "../../constant/endpoints";
 
 const StyledSearch = styled.div`
   margin: 1rem 0 1rem 0;
@@ -38,13 +39,11 @@ const StyledSearch = styled.div`
 export default function SearchMovie({ onSearch }) {
   const [searchValue, setSearchValue] = useState("");
 
-  const API_KEY = import.meta.env.VITE_API_KEY;
-
   const handleSearch = async () => {
     const query = encodeURIComponent(searchValue);
 
     try {
-      const response = await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${query}`);
+      const response = await axios.get(ENDPOINTS.SEARCH_MOVIE(query));
       const movies = response.data.results;
       onSearch(movies);
     } catch (error) {
