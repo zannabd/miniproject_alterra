@@ -31,19 +31,6 @@ const StyledPopular = styled.div`
 `;
 
 export default function Popular({ country, movies }) {
-  
-
-  // const API_KEY = "6e7471e72afb5cdd6752dd237ce49324";
-  // useEffect(() => {
-  //   getPopularMoviesUsa();
-  // }, []);
-
-  // async function getPopularMoviesUsa() {
-  //   // fetch dengan axios
-  //   const response = await axios(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`);
-
-  //   setMovies(response.data.results);
-  // }
   return (
     <StyledPopular>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">

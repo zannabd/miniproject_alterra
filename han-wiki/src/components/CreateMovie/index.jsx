@@ -1,8 +1,9 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
+import { useNavigate, useParams } from "react-router-dom";
 
 const StyledAddMovie = styled.div`
   background-color: #0d004f;
@@ -83,6 +84,9 @@ const StyledAddMovie = styled.div`
 `;
 
 export default function AddMovieForm({ onAddMovie }) {
+  const { id } = useParams();
+  const navigate = useNavigate();
+
   const [movieData, setMovieData] = useState({
     title: "",
     poster: "",
@@ -94,7 +98,6 @@ export default function AddMovieForm({ onAddMovie }) {
     poster: false,
     release_date: false,
     genre: false,
-    
   });
 
   const handleChange = (e) => {
@@ -119,15 +122,25 @@ export default function AddMovieForm({ onAddMovie }) {
       return;
     }
     try {
-      const response = await axios.post("https://6524e7f8ea560a22a4ea3f65.mockapi.io/movies", {
-        id: uuidv4(),
-        title: title,
-        poster: poster,
-        release_date: release_date,
-        genre: genre,
-      });
+      if (id) {
+        await axios.put(`https://6524e7f8ea560a22a4ea3f65.mockapi.io/movies/${id}`, {
+          title: title,
+          poster: poster,
+          release_date: release_date,
+          genre: genre,
+        });
+        navigate("/create");
+      } else {
+        const response = await axios.post("https://6524e7f8ea560a22a4ea3f65.mockapi.io/movies", {
+          id: uuidv4(),
+          title: title,
+          poster: poster,
+          release_date: release_date,
+          genre: genre,
+        });
 
-      onAddMovie(response.data);
+        onAddMovie(response.data);
+      }
 
       setMovieData({
         title: "",
@@ -146,6 +159,21 @@ export default function AddMovieForm({ onAddMovie }) {
       console.log("Gagal Menambah Movie", error);
     }
   };
+
+  useEffect(() => {
+    if (id) {
+      const fetchMovieData = async () => {
+        try {
+          const response = await axios.get(`https://6524e7f8ea560a22a4ea3f65.mockapi.io/movies/${id}`);
+          const { title, poster, release_date, genre } = response.data;
+          setMovieData({ title, poster, release_date, genre });
+        } catch (error) {
+          console.error("Gagal memuat data film untuk diedit", error);
+        }
+      };
+      fetchMovieData();
+    }
+  }, [id]);
 
   return (
     <StyledAddMovie>

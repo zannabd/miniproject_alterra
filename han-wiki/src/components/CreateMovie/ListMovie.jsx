@@ -4,6 +4,7 @@ import styled from "styled-components";
 // import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const StyledListMovie = styled.div`
   background-color: #370058;
@@ -40,14 +41,17 @@ const StyledListMovie = styled.div`
   #movie {
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
     text-align: center;
+    margin: 3rem;
+    flex-wrap: wrap;
   }
   button {
     margin-bottom: 2rem;
   }
   @media screen and (min-width: 768px) {
-    flex-basis: 50%;
+    #movie {
+      flex-basis: 50%;
+    }
   }
 
   @media screen and (min-width: 992px) {
@@ -105,17 +109,21 @@ export default function ListMovie(props) {
         <div className="mb-3" id="movie">
           {movies.map((movie, index) => (
             <div key={index}>
-              <img className="rounded-4" src={movie.poster} alt={movie.title} />
-              <h3 className="my-2 mt-3 text-center">{movie.title}</h3>
-              <div className="d-flex justify-content-center" id="cardMovie">
-                <p className="mx-2">{movie.release_date}</p>
-                <p className="genre">{movie.genre}</p>
-              </div>
+              <Link to={`/detail/${movie.id}`} className="link">
+                <img className="rounded-4" src={movie.poster} alt={movie.title} />
+                <h3 className="my-2 mt-3 text-center">{movie.title}</h3>
+                <div className="d-flex justify-content-center" id="cardMovie">
+                  <p className="mx-2">{movie.release_date}</p>
+                  <p className="genre">{movie.genre}</p>
+                </div>
+              </Link>
               <div className="d-flex justify-content-around text-center">
                 <button className="btn btn-danger" onClick={() => handleDeleteMovie(movie.id)}>
                   Delete
                 </button>
-                <button className="btn btn-warning">Edit</button>
+                <Link to={`/edit/${movie.id}`} className="text-decoration-none color-white">
+                  <button className="btn btn-warning">Edit</button>
+                </Link>
               </div>
             </div>
           ))}

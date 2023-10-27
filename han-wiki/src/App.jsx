@@ -8,6 +8,7 @@ import AboutPage from "./pages/OtherPage/AboutPage";
 import OpenAI from "./pages/OtherPage/OpenAIPage";
 import { useState } from "react";
 import DetailPage from "./pages/OtherPage/DetailPage";
+import AddMovieForm from "./components/CreateMovie";
 
 function App() {
   const [movies, setMovies] = useState([]);
@@ -23,6 +24,7 @@ function App() {
           <Route path="/openai" element={<OpenAI />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/detail/:id" element={<DetailPage />} />
+          <Route path="/edit/:id" element={<AddMovieForm />} />
         </Routes>
       </Layout>
     </>
