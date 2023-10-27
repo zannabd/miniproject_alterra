@@ -109,14 +109,14 @@ export default function ListMovie(props) {
         <div className="mb-3" id="movie">
           {movies.map((movie, index) => (
             <div key={index}>
-              <Link to={`/detail/${movie.id}`} className="link">
+              {/* <Link to={`/detail/${movie.id}`} className="link"> */}
                 <img className="rounded-4" src={movie.poster} alt={movie.title} />
                 <h3 className="my-2 mt-3 text-center">{movie.title}</h3>
                 <div className="d-flex justify-content-center" id="cardMovie">
                   <p className="mx-2">{movie.release_date}</p>
                   <p className="genre">{movie.genre}</p>
                 </div>
-              </Link>
+              {/* </Link> */}
               <div className="d-flex justify-content-around text-center">
                 <button className="btn btn-danger" onClick={() => handleDeleteMovie(movie.id)}>
                   Delete

@@ -2,7 +2,8 @@
 import styled from "styled-components";
 import Movie from "../Movie";
 import PropTypes from "prop-types";
-// import axios from "axios";
+import SearchMovie from "../SearcMovie/searchMovie";
+import { useState } from "react";
 // import { useEffect, useState } from "react";
 
 const StyledPopular = styled.div`
@@ -31,6 +32,11 @@ const StyledPopular = styled.div`
 `;
 
 export default function Popular({ country, movies }) {
+  const [searchedMovies, setSearchedMovies] = useState([]);
+
+  const handleSearchResult = (searchResult) => {
+    setSearchedMovies(searchResult);
+  };
   return (
     <StyledPopular>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
@@ -46,8 +52,9 @@ export default function Popular({ country, movies }) {
             {country}
           </p>
         </div>
+        <SearchMovie onSearch={handleSearchResult} />
         <div className="movie">
-          {movies.map(function (movie) {
+          {(searchedMovies.length > 0 ? searchedMovies : movies).map(function (movie) {
             return <Movie key={movie.id} movie={movie} />;
           })}
         </div>

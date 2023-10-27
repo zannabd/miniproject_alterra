@@ -13,7 +13,7 @@ export default function KoreanPage() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   async function getPopularMoviesKorea() {
-    const response = await axios(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&with_original_language=ko&primary_release_date.gte=2020-12-01&adult=false`);
+    const response = await axios(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&with_origin_country=KR&primary_release_date.gte=2020-12-01&adult=false`);
     setMovies(response.data.results);
   }
   return (

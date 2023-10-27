@@ -86,7 +86,6 @@ const StyledAddMovie = styled.div`
 export default function AddMovieForm({ onAddMovie }) {
   const { id } = useParams();
   const navigate = useNavigate();
-
   const [movieData, setMovieData] = useState({
     title: "",
     poster: "",
@@ -132,7 +131,7 @@ export default function AddMovieForm({ onAddMovie }) {
         navigate("/create");
       } else {
         const response = await axios.post("https://6524e7f8ea560a22a4ea3f65.mockapi.io/movies", {
-          id: uuidv4(),
+          id: uuidv4,
           title: title,
           poster: poster,
           release_date: release_date,
@@ -187,14 +186,14 @@ export default function AddMovieForm({ onAddMovie }) {
             <label>
               <span>Title :</span>
               <br />
-              <input type="text" id="inputTitle" name="title" value={movieData.title} onChange={handleChange} />
+              <input type="text" id="inputTitle" name="title" value={movieData.title} onChange={handleChange} placeholder="Judul Movie" />
               {formError.title && <div className="error">{formError.title}</div>}
             </label>
 
             <label>
               <span>Poster Link :</span>
               <br />
-              <input type="text" id="inputPoster" name="poster" value={movieData.poster} onChange={handleChange} />
+              <input type="text" id="inputPoster" name="poster" value={movieData.poster} onChange={handleChange} placeholder="linkposter.jpg/.png" />
               {formError.poster && <div className="error">{formError.poster}</div>}
             </label>
 
@@ -208,7 +207,7 @@ export default function AddMovieForm({ onAddMovie }) {
               <label className="labelGenre">
                 <span>Genre :</span>
                 <br />
-                <input type="text" id="inputGenre" name="genre" value={movieData.genre} onChange={handleChange} />
+                <input type="text" id="inputGenre" name="genre" value={movieData.genre} onChange={handleChange} placeholder="ex: Action, Crime" />
                 {formError.genre && <div className="error">{formError.genre}</div>}
               </label>
             </div>
