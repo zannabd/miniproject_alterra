@@ -49,7 +49,7 @@ export default function Address() {
               Indonesia <br />
               <br />
               <b>Phone</b>: +1 5589 55488 55 <br />
-              <b>Email</b>: fabilah234@gmail.com
+              <b>Email</b>: fabdilah234@gmail.com
             </p>
           </div>
           <div className="carde">
@@ -68,6 +68,7 @@ export default function Address() {
               <li>Popular Movie In USA</li>
               <li>Popular Movie In Korean</li>
               <li>Popular Movie In Japan</li>
+              <li>Search Movie By Title</li>
               <li>Create a Popular Movie</li>
               <li>Contact</li>
             </ul>

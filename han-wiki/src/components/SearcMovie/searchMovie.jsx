@@ -10,6 +10,11 @@ import ENDPOINTS from "../../constant/endpoints";
 const StyledSearch = styled.div`
   margin: 1rem 0 1rem 0;
   position: relative;
+  .inputan {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
   input {
     width: 50%;
     height: 50px;

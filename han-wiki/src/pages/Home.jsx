@@ -3,6 +3,7 @@ import Hero from "../components/Hero";
 import Popular from "../components/Popular";
 import axios from "axios";
 import ENDPOINTS from "../constant/endpoints";
+import ScrollToTopButton from "../components/ScrolledUp";
 
 export default function Home() {
   const [movies, setMovies] = useState([]);
@@ -22,6 +23,7 @@ export default function Home() {
     <>
       <Hero />
       <Popular country="Popular Movie" movies={movies} />
+      <ScrollToTopButton />
     </>
   );
 }
