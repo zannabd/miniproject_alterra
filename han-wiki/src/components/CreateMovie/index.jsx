@@ -12,6 +12,13 @@ const StyledAddMovie = styled.div`
   font-family: "Poppins";
   color: #fff;
   margin-top: 0;
+  .left img {
+    justify-content: center;
+  }
+  img {
+    width: 250px;
+    height: auto;
+  }
 
   .movieForm {
     display: flex;
@@ -63,11 +70,20 @@ const StyledAddMovie = styled.div`
     background-color: #470057;
   }
   @media screen and (min-width: 768px) {
+    img {
+      width: 500px;
+      height: auto;
+      justify-content: center;
+    }
     .movieForm {
       flex-direction: column;
     }
   }
   @media screen and (min-width: 992px) {
+    img {
+      width: 500px;
+      height: auto;
+    }
     .movieForm {
       flex-direction: row;
     }

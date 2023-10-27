@@ -7,12 +7,15 @@ const StyledHero = styled.div`
   background-color: #0d004f;
   color: #fff;
   font-family: "Poppins";
-  padding: 2rem;
+  padding-bottom: 2rem;
   padding-top: 6rem;
 
   .right {
     text-align: center;
-    margin: 2rem;
+    margin: 2rem 0 2rem 0;
+  }
+  img {
+    width: 300px;
   }
   #contain {
     margin-left: 2rem;
@@ -35,7 +38,14 @@ const StyledHero = styled.div`
     background-color: #470057;
   }
 
+  @media screen and (min-width: 768px) {
+    padding: 2rem;
+    img {
+      width: 500px;
+    }
+  }
   @media screen and (min-width: 992px) {
+    padding: 2rem;
     #contain {
       flex-direction: row;
     }
@@ -49,6 +59,9 @@ const StyledHero = styled.div`
       flex-basis: 40%;
       text-align: center;
       margin-top: 0;
+    }
+    img {
+      width: 500px;
     }
     button {
       width: 30%;
@@ -87,26 +100,24 @@ export default function Hero() {
 
   return (
     <StyledHero>
-      <>
-        <div className="d-flex mx-5" id="contain">
-          <div className="left">
-            <h1 className="mb-3">{movie.title}</h1>
-            <div className="d-flex" id="blue">
-              <p className="me-4">{movie.release_date}</p>
-              <p>{genre}</p>
-            </div>
-            <p className="my-4">{movie.overview}</p>
-            <button className="rounded-3">
-              <a className="text-white text-decoration-none" href={`https://www.youtube.com/watch?v=${trailer}`} target="_blank" rel="noopener noreferrer">
-                Watch Trailer
-              </a>
-            </button>
+      <div className="d-flex mx-5" id="contain">
+        <div className="left">
+          <h1 className="mb-3">{movie.title}</h1>
+          <div className="d-flex" id="blue">
+            <p className="me-4">{movie.release_date}</p>
+            <p>{genre}</p>
           </div>
-          <div className="right">
-            <img className="rounded-4" src={`https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`} alt={movie.Title}></img>
-          </div>
+          <p className="my-4">{movie.overview}</p>
+          <button className="rounded-3">
+            <a className="text-white text-decoration-none" href={`https://www.youtube.com/watch?v=${trailer}`} target="_blank" rel="noopener noreferrer">
+              Watch Trailer
+            </a>
+          </button>
         </div>
-      </>
+        <div className="right">
+          <img className="rounded-4" src={`https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`} alt={movie.Title}></img>
+        </div>
+      </div>
     </StyledHero>
   );
 }

@@ -10,7 +10,8 @@ const StyledPopular = styled.div`
   background-color: #370058;
   font-family: "Poppins";
   text-align: center;
-  padding-bottom: 4rem;
+  margin-top: 0;
+  padding: 0 0 4rem 0;
 
   #popular {
     color: #118ab2;
