@@ -3,15 +3,15 @@ import { useState, useEffect } from "react";
 import styled from "styled-components";
 
 const StyledArrow = styled.div`
-  /* ScrollToTopButton.css */
+
   .scroll-to-top {
     position: fixed;
     bottom: 20px;
-    right: 20px;
+    right: 50px;
     background: #007bff;
     color: #fff;
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -25,6 +25,11 @@ const StyledArrow = styled.div`
     display: inline-block;
     padding: 5px;
     transform: rotate(-135deg);
+  }
+  @media screen and (min-width: 768px) {
+    .scroll-to-top {
+        right: 30px;
+    }
   }
 `;
 const ScrollToTopButton = () => {
