@@ -20,6 +20,7 @@ const StyledNavbar = styled.div`
   ul li {
     list-style-type: none;
     cursor: pointer;
+    margin-left: 1rem;
     margin-right: 1rem;
   }
 
@@ -67,12 +68,6 @@ const StyledNavbar = styled.div`
 
   @media screen and (min-width: 768px) {
     padding: 1rem;
-    nav {
-      flex-direction: row;
-      margin: 2rem 2rem;
-    }
-  }
-  @media screen and (min-width: 992px) {
     nav {
       flex-direction: row;
       margin: 2rem 2rem;
