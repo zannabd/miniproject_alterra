@@ -15,7 +15,7 @@ const StyledHero = styled.div`
     margin: 2rem 0 2rem 0;
   }
   img {
-    width: 300px;
+    width: 250px;
   }
   #contain {
     margin-left: 2rem;
@@ -36,6 +36,12 @@ const StyledHero = styled.div`
 
   button:hover {
     background-color: #470057;
+  }
+  @media screen and (min-width: 712px) {
+    padding: 2rem;
+    img {
+      width: 500px;
+    }
   }
 
   @media screen and (min-width: 768px) {

@@ -35,12 +35,17 @@ const StyledAddress = styled.div`
     display: flex;
     justify-content: space-evenly;
   }
+  @media screen and (min-width: 768px) {
+    #address {
+      display: flex;
+    }
+  }
 `;
 export default function Address() {
   return (
     <StyledAddress>
       <Container>
-        <div className="d-flex justify-content-evenly py-3">
+        <div className="justify-content-evenly py-3" id="address">
           <div>
             <h2>Han-WIKI</h2>
             <p>

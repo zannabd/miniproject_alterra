@@ -22,8 +22,8 @@ const StyledContact = styled.div`
     margin-top: 1rem;
   }
   #formInput {
-    margin: 2rem;
-    flex-basis: 50%;
+    margin: 0.5rem;
+    flex-basis: 80%;
     align-self: center;
   }
 
@@ -37,8 +37,20 @@ const StyledContact = styled.div`
   .button:hover {
     border: 2px solid #cf00ff;
   }
+  @media screen and (min-width: 768px) {
+    #formInput {
+      margin: 2rem;
+      flex-basis: 50%;
+      align-self: center;
+    }
+  }
 
   @media screen and (min-width: 992px) {
+    #formInput {
+      margin: 2rem;
+      flex-basis: 50%;
+      align-self: center;
+    }
     .row-contact {
       display: flex;
       flex-direction: row;

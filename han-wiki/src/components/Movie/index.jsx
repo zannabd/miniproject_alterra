@@ -20,6 +20,7 @@ const StyledMovie = styled.div`
   }
   img {
     transition: transform 0.3s ease;
+    width: 200px;
   }
   img:hover {
     transform: scale(0.9);
@@ -27,10 +28,18 @@ const StyledMovie = styled.div`
 
   @media screen and (min-width: 768px) {
     flex-basis: 50%;
+    img {
+      transition: transform 0.3s ease;
+      width: 300px;
+    }
   }
   @media screen and (min-width: 992px) {
     flex-basis: 25%;
     padding: 1rem;
+    img {
+    transition: transform 0.3s ease;
+    width: 300px;
+  }
   }
 `;
 
@@ -48,9 +57,7 @@ export default function Movie(props) {
               <h3 className="fs-3xl text-white" id="title">
                 {movie.title}
               </h3>
-              <p id="date">
-                {movie.year || movie.release_date}
-              </p>
+              <p id="date">{movie.year || movie.release_date}</p>
             </div>
           </Link>
         </div>

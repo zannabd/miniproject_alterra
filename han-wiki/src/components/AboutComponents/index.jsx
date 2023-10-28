@@ -8,7 +8,12 @@ const StyledAbout = styled.div`
   font-family: "Poppins";
 
   p {
-    margin: 0 8rem 0 8rem
+    margin: 0 0.5rem 0 0.5rem;
+  }
+  @media screen and (min-width: 768px) {
+    p {
+      margin: 0 8rem 0 8rem;
+    }
   }
 `;
 
