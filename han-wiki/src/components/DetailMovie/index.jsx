@@ -93,7 +93,11 @@ export default function Detail() {
     fetchDetailMovie();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
-
+  
+  // Jika movie masih kosong atau belum ada datanya, tampilkan loading
+  if (!movie || !movie.title) {
+    return <StyledDetail><h2 style={{textAlign: 'center'}}>Loading...</h2></StyledDetail>;
+  }
   return (
     <StyledDetail>
       <>
